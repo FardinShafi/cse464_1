@@ -66,7 +66,17 @@ class ListScreen extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               //height: 100,
-              color: Colors.white,
+
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                )
+
+
+
+              )
             ),
           )
         ],
