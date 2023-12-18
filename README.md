@@ -1,4 +1,4 @@
-# mobile_app
+# todo_app_iub
 
 A new Flutter project.
 

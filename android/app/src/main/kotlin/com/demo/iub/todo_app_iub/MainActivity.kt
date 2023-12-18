@@ -1,4 +1,4 @@
-package com.example.mobile_app
+package com.demo.iub.todo_app_iub
 
 import io.flutter.embedding.android.FlutterActivity
 

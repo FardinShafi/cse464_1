@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app_iub/models/TaskData.dart';
+import 'package:todo_app_iub/models/task.dart';
 
-class ListScreen extends StatelessWidget {
-  const ListScreen({super.key});
+import '../widgets/tasks_list.dart';
+import 'add_task_screen.dart';
+
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +24,20 @@ class ListScreen extends StatelessWidget {
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: AddTaskScreen(),
+              ),
+            ),
+          );
+        },
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -26,7 +51,7 @@ class ListScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: AssetImage("asset/images/my_img.png"),
+                  backgroundImage: AssetImage("assets/images/my_image.jpeg"),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -38,7 +63,7 @@ class ListScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "fardin@gmail.com",
+                  "2020975@iub.edu.bd",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17.0,
@@ -53,7 +78,7 @@ class ListScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  "3 Tasks",
+                  "${Provider.of<TaskData>(context).taskCount} Tasks",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -64,19 +89,18 @@ class ListScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              //height: 100,
-
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.0,
+              ),
+              // color: Colors.white,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                )
-
-
-
-              )
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
+              ),
+              child: TasksList(),
             ),
           )
         ],
